@@ -1,0 +1,12 @@
+export const GUILD_ID = "";
+export const SUBMISSION_CHANNEL_ID = "";
+export const QUEUE_MANAGER_ROLE_ID = "";
+export const REPORTS_DISABLED_ROLE_ID = "";
+export const APPROVED_REPORTS_CHANNEL_ID = "";
+export const DENIED_REPORTS_CHANNEL_ID = "";
+export const CODE_BLUE = 0x24ACF2;
+export const ERROR_RED = 0xD72D42;
+export const PREFIX = "!";
+export const MANAGER_ROLE_ID = "";
+export const STANDARD_USER_ROLE_ID = "";
+export const ALLOWED_ROLES = [STANDARD_USER_ROLE_ID, MANAGER_ROLE_ID];

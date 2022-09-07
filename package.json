@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "discord.js": "^14.3.0",
+    "mysql": "^2.18.1",
+    "psl": "^1.9.0"
+  },
+  "devDependencies": {
+    "@types/mysql": "^2.15.21",
+    "@types/psl": "^1.1.0"
+  }
+}
