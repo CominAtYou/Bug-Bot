@@ -1,4 +1,4 @@
-import { CODE_BLUE, ERROR_RED, } from '../../../lib/values';
+import { CODE_BLUE, ERROR_RED, PREFIX, } from '../../../lib/values';
 import { Message, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, MessageActionRowComponentBuilder } from "discord.js"
 import { sendMessageError } from "../../../lib/util/timeoutError";
 import { remove } from '../inProgressReports';
@@ -61,13 +61,15 @@ export default async function questionTen(message: Message, data: { title: strin
         try {
             var messageURL = await createReport(message, data);
         }
-        catch {
+        catch (e) {
             summaryEmbed.setTitle("Something went wrong!")
             .setColor(ERROR_RED)
-            .setDescription("We were unable to submit your report due to an internal error. Please try again later. Here's your report for future reference:")
+            .setDescription("We were unable to submit your report due to an internal error. Try giving it another shot, and if that doesn't work, try again later. Here's your report for future reference:")
             .setFooter(null);
 
             await embedMessage.edit({ embeds: [summaryEmbed], components: [] });
+
+            console.error(e);
             return;
         }
 
@@ -81,5 +83,12 @@ export default async function questionTen(message: Message, data: { title: strin
         await collectedInteraction.update({ embeds: [summaryEmbed], components: [viewLinkRow] });
         remove(message.author.id);
         return;
+    }
+    else {
+        summaryEmbed.setTitle("Report Discarded")
+        .setColor(ERROR_RED)
+        .setDescription(`Your report has been discarded. If you need to make any changes, please re-run the bot with \`${PREFIX}submit\` and submit a new report with the necessary changes.`)
+
+        await collectedInteraction.update({ embeds: [summaryEmbed], components: [] });
     }
 }
