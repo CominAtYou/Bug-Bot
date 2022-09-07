@@ -8,7 +8,7 @@ export default async function questionFour(message: Message, interaction: Messag
     const embed = new EmbedBuilder()
         .setTitle("Describe your bug in a sentence like you're telling a friend about it.")
         .setColor(CODE_BLUE)
-        .setDescription(`Make this as descriptive as possible and avoid things like "it glitches" or "it's broken". The more specific you are, the better. This must be 10 steps or less and less than 256 characters, including spaces.`)
+        .setDescription(`Make this as descriptive as possible and avoid things like "it glitches" or "it's broken". The more specific you are, the better.\n\n**This must be 10 steps or less. Each step must be at most 100 characters, including spaces.**`)
         .setFooter({ text: "Session will auto-close after 5 minutes of inactivity." });
 
         await interaction.update({ embeds: [embed], components: [] });
