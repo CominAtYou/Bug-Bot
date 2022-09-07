@@ -1,12 +1,16 @@
 import { ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 import KnownBugEntry from "../../lib/KnownBugEntry";
 import { CODE_BLUE } from "../../lib/values";
+import { readFile } from "fs/promises";
 
 export default async function listKnownBugs(interaction: ChatInputCommandInteraction) {
-    const knownBugsArr = (require(__dirname + '/activeBugs.json') as KnownBugEntry[]).filter(i => i.expires > Date.now());
+    const now = Math.floor(Date.now() / 1000);
+    const json = (await readFile(`${process.cwd()}/activeBugs.json`)).toString();
+
+    const knownBugsArr = (JSON.parse(json) as KnownBugEntry[]).filter(i => i.expires > now);
 
     if (knownBugsArr.length === 0) {
-        await interaction.reply({ content: "There doesn't seem to be any known bugs right now.", ephemeral: true });
+        await interaction.reply({ content: "There doesn't seem to be any known bugs right now." });
         return;
     }
 

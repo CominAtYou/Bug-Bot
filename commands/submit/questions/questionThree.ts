@@ -7,7 +7,8 @@ import generateButtonID from '../../../lib/util/buttonIDs';
 import KnownBugEntry from '../../../lib/KnownBugEntry';
 
 export default async function questionThree(message: Message, interaction: MessageComponentInteraction) {
-    const knownBugsArr = (require('../../../lib/activeBugs.json') as KnownBugEntry[]).filter(i => i.expires > Date.now());
+    const now = Math.floor(Date.now() / 1000);
+    const knownBugsArr = (require(process.cwd() + '/activeBugs.json') as KnownBugEntry[]).filter(i => i.expires > now);
 
     if (knownBugsArr.length === 0) {
         await questionFour(message, interaction);
