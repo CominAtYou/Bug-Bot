@@ -1,8 +1,8 @@
 import { Client, Partials, InteractionType } from 'discord.js';
 import { chatInputCommands, buttonCommands, textCommands, modalInteractions } from "./lib/commandRouter";
-import { TOKEN } from './lib/secrets';
 import * as sql from "./lib/sqlInstance";
 import { PREFIX } from './lib/values';
+import { TOKEN } from "./lib/secrets.json";
 
 const client = new Client({ intents: [ 'GuildMessages', 'Guilds', 'GuildMembers', 'DirectMessages' ], partials: [ Partials.Message, Partials.Channel ] });
 

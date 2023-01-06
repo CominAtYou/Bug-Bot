@@ -1,6 +1,6 @@
 import * as mysql from "mysql";
-import { MYSQL_CREDENTIALS } from "./secrets";
 import { promisify } from "util";
+import { MYSQL_CREDENTIALS } from "./secrets.json";
 
 const connection = mysql.createConnection(MYSQL_CREDENTIALS);
 
