@@ -34,5 +34,5 @@ export default async function questionSix(message: Message, data: { title: strin
         return;
     }
 
-    await questionEight(message, { title: data.title, steps: data.steps, expected: collectedMessage.first().content, actual: collectedMessage.first().content });
+    await questionEight(message, { title: data.title, steps: data.steps, expected: data.expected, actual: collectedMessage.first().content });
 }
